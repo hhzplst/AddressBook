@@ -6,7 +6,10 @@ namespace AddressBook {
   public class AddressBook : List<Person> {
 
     public void AddPerson(Person p) {
-      base.Add(p);
+      if (this.Contains(p))
+        Console.WriteLine("This Person object already exists!");
+      else
+        base.Add(p);
     }
     public void RemoveById(int id) {
       Person foundPerson = this.SingleOrDefault(x => x.ID == id);
@@ -15,7 +18,7 @@ namespace AddressBook {
       else
         base.Remove(foundPerson);
     }
-    public void RemoveByFirstName(string firstName) {
+    public void RemoveByFirstNameOrLastName(string firstName) {
 
     }
     

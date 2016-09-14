@@ -9,18 +9,30 @@ namespace AddressBook {
       if (this.Contains(p))
         Console.WriteLine("This Person object already exists!");
       else
-        base.Add(p);
+        this.Add(p);
     }
     public void RemoveById(int id) {
       Person foundPerson = this.SingleOrDefault(x => x.ID == id);
       if (foundPerson == null)
         Console.WriteLine("No such ID exists!");
       else
-        base.Remove(foundPerson);
+        this.Remove(foundPerson);
     }
-    public void RemoveByFirstNameOrLastName(string firstName) {
-
+    public void RemoveByFirstName(string firstName) {
+      try {
+        this.RemoveAll(x => x.FirstName == firstName);
+      } catch (ArgumentNullException) {
+        Console.WriteLine("No record found with first name {0}", firstName);
+      }
+      
     }
-    
+    public void RemoveByLastName(string lastName) {
+      try {
+        this.RemoveAll(x => x.LastName == lastName);
+      } catch (ArgumentNullException){
+        Console.WriteLine("No record found with last name {0}", lastName);
+      }
+      
+    }
   }
 }

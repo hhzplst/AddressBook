@@ -1,6 +1,6 @@
 using System;
 
-namespace Person {
+namespace AddressBook {
   public class Person {
     private static int LastIDAssigned = 0;
     private static Random randomNumber = new Random();

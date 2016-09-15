@@ -14,18 +14,18 @@ namespace AddressBook {
     public Person SearchByID(int id) {
       return this.SingleOrDefault(x => x.ID == id);
     }
-    public void FindByFirstName(string firstName) {
+    public void SearchByFirstName(string firstName) {
       try {
         List<Person> foundList = this.FindAll(x => x.FirstName == firstName);
-        foundList.ToString();
+        Console.WriteLine(foundList.ToString());
       } catch (ArgumentNullException) {
         Console.WriteLine("No record found with first name {0}", firstName);
       }
     }
-     public void FindByLastName(string lastName) {
+     public void SearchByLastName(string lastName) {
       try {
         List<Person> foundList = this.FindAll(x => x.LastName == lastName);
-        foundList.ToString();
+        Console.WriteLine(foundList.ToString());
       } catch (ArgumentNullException) {
         Console.WriteLine("No record found with last name {0}", lastName);
       }
@@ -52,5 +52,15 @@ namespace AddressBook {
         Console.WriteLine("No record found with last name {0}", lastName);
       }
     }
+
+    public static void PrintInfo(List<Person> personList) {
+      Console.WriteLine(String.Format("**********************************************************\n" +
+                                      "{0, -10} {1, -15} {2, -15} {3, -20}\n" +
+                                      "**********************************************************\n",  
+                                      "ID", "FIRSTNAME", "LASTNAME", "FULLNAME")); 
+  
+      personList.ForEach(x => Console.WriteLine("{0, -10} {1, -15} {2, -15} {3, -20}\n",
+                                                x.ID, x.FirstName, x.LastName, x.GetFullName()));
+    }
   }
-}
+} 

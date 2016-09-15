@@ -11,8 +11,27 @@ namespace AddressBook {
       else
         this.Add(p);
     }
+    public Person SearchByID(int id) {
+      return this.SingleOrDefault(x => x.ID == id);
+    }
+    public void FindByFirstName(string firstName) {
+      try {
+        List<Person> foundList = this.FindAll(x => x.FirstName == firstName);
+        foundList.ToString();
+      } catch (ArgumentNullException) {
+        Console.WriteLine("No record found with first name {0}", firstName);
+      }
+    }
+     public void FindByLastName(string lastName) {
+      try {
+        List<Person> foundList = this.FindAll(x => x.LastName == lastName);
+        foundList.ToString();
+      } catch (ArgumentNullException) {
+        Console.WriteLine("No record found with last name {0}", lastName);
+      }
+    }
     public void RemoveById(int id) {
-      Person foundPerson = this.SingleOrDefault(x => x.ID == id);
+      Person foundPerson = SearchByID(id);
       if (foundPerson == null)
         Console.WriteLine("No such ID exists!");
       else
@@ -32,7 +51,6 @@ namespace AddressBook {
       } catch (ArgumentNullException){
         Console.WriteLine("No record found with last name {0}", lastName);
       }
-      
     }
   }
 }

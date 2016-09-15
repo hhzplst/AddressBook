@@ -1,5 +1,3 @@
-using System;
-
 namespace AddressBook {
   public class Person {
     private static int LastIDAssigned = 1000;

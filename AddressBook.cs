@@ -1,56 +1,63 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AddressBook {
   public class AddressBook : List<Person> {
 
     public void AddPerson(Person p) {
       if (this.Contains(p))
-        Console.WriteLine("This Person object already exists!");
+        Console.WriteLine("This Person object already exists!\n");
       else
         this.Add(p);
     }
-    public Person SearchByID(int id) {
-      return this.SingleOrDefault(x => x.ID == id);
+    public void SearchByID (int id) {
+      List<Person> recordList = this.FindAll(x => x.ID == id);
+      if(recordList.Count == 0)
+        Console.WriteLine("No such ID exists!\n");
+      else {
+        Console.WriteLine("Successfully retrieved {0} record:\n", recordList);
+        PrintListInfo(recordList);
+      }
     }
     public void SearchByFirstName(string firstName) {
-      try {
-        List<Person> foundList = this.FindAll(x => x.FirstName == firstName);
-        Console.WriteLine(foundList.ToString());
-      } catch (ArgumentNullException) {
-        Console.WriteLine("No record found with first name {0}", firstName);
+      List<Person> recordList = this.FindAll(x => x.FirstName == firstName);
+      if (recordList.Count == 0)
+        Console.WriteLine("No record found with first name {0}!\n", firstName);
+      else {
+        Console.WriteLine("Successfully retrieved {0} records:\n", recordList.Count);
+        PrintListInfo(recordList);
       }
     }
      public void SearchByLastName(string lastName) {
-      try {
-        List<Person> foundList = this.FindAll(x => x.LastName == lastName);
-        Console.WriteLine(foundList.ToString());
-      } catch (ArgumentNullException) {
-        Console.WriteLine("No record found with last name {0}", lastName);
+      List<Person> recordList = this.FindAll(x => x.LastName == lastName);
+      if (recordList.Count == 0)
+        Console.WriteLine("No record found with last name {0}!\n", lastName);
+      else {
+        Console.WriteLine("Successfully retrieved {0} records:\n", recordList.Count);
+        PrintListInfo(recordList);
       }
     }
     public void RemoveById(int id) {
-      Person foundPerson = SearchByID(id);
-      if (foundPerson == null)
-        Console.WriteLine("No such ID exists!");
+      int records = this.RemoveAll(x => x.ID == id);
+      if (records == 0)
+        Console.WriteLine("No such ID exists!\n");
       else
-        this.Remove(foundPerson);
+        Console.WriteLine("Successfully removed {0} records with ID {1}\n", records, id);
     }
+
     public void RemoveByFirstName(string firstName) {
-      try {
-        this.RemoveAll(x => x.FirstName == firstName);
-      } catch (ArgumentNullException) {
-        Console.WriteLine("No record found with first name {0}", firstName);
-      }
-      
+      int records = this.RemoveAll(x => x.FirstName == firstName); 
+      if(records == 0)
+        Console.WriteLine("No record found with first name {0}!\n", firstName);
+      else
+        Console.WriteLine("Successfully removed {0} records with first name {1}\n", records, firstName);
     }
     public void RemoveByLastName(string lastName) {
-      try {
-        this.RemoveAll(x => x.LastName == lastName);
-      } catch (ArgumentNullException){
-        Console.WriteLine("No record found with last name {0}", lastName);
-      }
+      int records = this.RemoveAll(x => x.FirstName == lastName); 
+      if(records == 0)
+        Console.WriteLine("No record found with last name {0}!\n", lastName);
+      else
+        Console.WriteLine("Successfully removed {0} records with last name {1}\n", records, lastName);
     }
 
     public static void PrintListInfo(List<Person> personList) {

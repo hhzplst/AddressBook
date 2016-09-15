@@ -53,7 +53,7 @@ namespace AddressBook {
       }
     }
 
-    public static void PrintInfo(List<Person> personList) {
+    public static void PrintListInfo(List<Person> personList) {
       Console.WriteLine(String.Format("**********************************************************\n" +
                                       "{0, -10} {1, -15} {2, -15} {3, -20}\n" +
                                       "**********************************************************\n",  

@@ -11,8 +11,8 @@ namespace AddressBook {
             testAddressBook.AddPerson(new Person("Elham", "Farhodi"));
             testAddressBook.AddPerson(new Person("Austen", "Roberts"));
             testAddressBook.AddPerson(newPerson);
-            
-            AddressBook.PrintInfo(testAddressBook);
+
+            AddressBook.PrintListInfo(testAddressBook);
 
             // testAddressBook.SearchByLastName("Chang");
         }

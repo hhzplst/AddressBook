@@ -2,8 +2,7 @@ using System;
 
 namespace AddressBook {
   public class Person {
-    private static int LastIDAssigned = 0;
-    private static Random randomNumber = new Random();
+    private static int LastIDAssigned = 1000;
     public string FirstName {get; set;}
     public string LastName {get; set;}
     public int ID {get; set;}
@@ -16,22 +15,17 @@ namespace AddressBook {
       return FirstName + " " + LastName;
     }
     public override string ToString() {
-      string result = "************************************************\n";
-      result += String.Format("{0, -5} {1, 0} {2, 15} {3, 15}\n", "ID", "FIRSTNAME", "LASTNAME", "FULLNAME");
-      result += "************************************************\n";
-      result += String.Format("{0, -5} {1, 5} {2, 17} {3, 17}\n", ID, FirstName, LastName, GetFullName());
-      return result;
+      return String.Format("**********************************************************\n" +
+                           "{0, -10} {1, -15} {2, -15} {3, -20}\n" +
+                           "**********************************************************\n" + 
+                           "{4, -10} {5, -15} {6, -15} {7, -20}\n", "ID", "FIRSTNAME", "LASTNAME", "FULLNAME", 
+                           ID, FirstName, LastName, GetFullName());
     }
     public void PrintInfo() {
-      Console.WriteLine(this.ToString());
+      Console.WriteLine(this);
     }
     private static int SetID() {
-      int newID = randomNumber.Next(10000);
-      while (newID == LastIDAssigned) {
-        newID = randomNumber.Next(10000);
-      }
-      LastIDAssigned = newID;
-      return newID;
+      return ++LastIDAssigned;
     }
   }
 }

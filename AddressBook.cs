@@ -53,7 +53,7 @@ namespace AddressBook {
         Console.WriteLine("Successfully removed {0} records with first name {1}\n", records, firstName);
     }
     public void RemoveByLastName(string lastName) {
-      int records = this.RemoveAll(x => x.FirstName == lastName); 
+      int records = this.RemoveAll(x => x.LastName == lastName); 
       if(records == 0)
         Console.WriteLine("No record found with last name {0}!\n", lastName);
       else
